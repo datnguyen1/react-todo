@@ -34,14 +34,21 @@ export default function App() {
     <div>
       <ul>
         {list
-        .map((item, index) =>
-        <li style={{ textDecoration: item.isDone ? "line-through" : "" }}
-         onClick ={() => markDone(index)} 
-         key = {item.text}>
-           {item.text}
-           <i class="fa-solid fa-trash-can"></i>
-            </li>)}
+        .map((item, index) =>  {
+        return (
+          <div className = "container">
+            <li style={{ textDecoration: item.isDone ? "line-through" : "" }}
+            onClick ={() => markDone(index)} 
+            key = {item.text}>
+              {item.text}
+            </li>
+            <i className="fa-solid fa-trash-can"></i>
+        </div>
+        )
+        })
+      }
       </ul>
+
       <form onSubmit={onSubmit}>
         <input type = "text" 
         task = "task" 

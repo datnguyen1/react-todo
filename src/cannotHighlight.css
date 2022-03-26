@@ -1,5 +1,8 @@
+ul {
+    padding: 0;
+}
+
 li {
-    color: beige;
     -webkit-touch-callout : none;
     -webkit-user-select:none;
     -moz-user-select: none;
@@ -7,5 +10,22 @@ li {
     -o-user-select: none;; user-select: none;
 }
 body {
-background-color: black;
+    background-color: black;
+    color:beige;
+}
+
+form {
+    margin: auto;
+    width: 30%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.container {
+    margin: auto;
+    width: 30%;
+    border: 3px solid rgb(32, 70, 95);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }
