@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import './cannotHighlight.css' 
 
-function App() {
+export default function App() {
+  const [list, setList] = useState([]);
+  const [task, setTask] = useState("");
+
+  function addToList(text){
+    const newList = [...list,{ text } ];
+    setList(newList);
+    setTask("");
+    console.log(newList);
+  }
+
+  function markDone(index) {
+    const newList = [...list];
+    if (!newList[index].isDone){
+      newList[index].isDone = true;
+    } else {
+      newList[index].isDone = !newList[index].isDone;
+    }
+    setList(newList);
+    console.log(newList);
+  }
+
+  function onSubmit(e){
+    e.preventDefault();
+    console.log("task is", task);
+    addToList(task);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        {list
+        .map((item, index) =>
+        <li style={{ textDecoration: item.isDone ? "line-through" : "" }}
+         onClick ={() => markDone(index)} 
+         key = {item.text}>{item.text}</li>)}
+      </ul>
+      <form onSubmit={onSubmit}>
+        <input type = "text" task = "task" placeholder='task' value={task} onChange={e => setTask(e.target.value)}></input>
+        <input type = "submit" value = "submit"></input>
+      </form>
     </div>
-  );
+  )
 }
-
-export default App;
