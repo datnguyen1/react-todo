@@ -17,15 +17,20 @@ body {
 form {
     margin: auto;
     width: 30%;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     padding: 10px;
 }
 
 .container {
     margin: auto;
     width: 30%;
-    border: 3px solid rgb(32, 70, 95);
+    /* border: 3px solid rgb(32, 70, 95); */
     padding: 10px;
     display: flex;
     justify-content: space-between;
 }
+
+input {
+    width: 100%;
+}
+

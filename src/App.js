@@ -21,7 +21,11 @@ export default function App() {
       newList[index].isDone = !newList[index].isDone;
     }
     setList(newList);
-    console.log(newList);
+  }
+
+  function removeItem(index) {
+    const newList = list.slice(0,index).concat(list.slice(index+1));
+    setList(newList);
   }
 
   function onSubmit(e){
@@ -42,7 +46,8 @@ export default function App() {
             key = {item.text}>
               {item.text}
             </li>
-            <i className="fa-solid fa-trash-can"></i>
+            <i className="fa-solid fa-trash-can"
+            onClick={() => removeItem(index)}></i>
         </div>
         )
         })
@@ -51,13 +56,12 @@ export default function App() {
 
       <form onSubmit={onSubmit}>
         <input type = "text" 
-        task = "task" 
         placeholder='task' 
         value={task} 
         onChange={e => setTask(e.target.value)}
         required></input>
         <input type = "submit" 
-        value = "submit"></input>
+        value = "Add to List"></input>
       </form>
     </div>
   )
