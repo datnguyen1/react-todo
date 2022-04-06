@@ -23,15 +23,20 @@ export default function App() {
     setList(newList);
   }
 
+  function onSubmit(e){
+    e.preventDefault();
+    console.log("task is", task);
+    addToList(task);
+  }
+
   function removeItem(index) {
     const newList = list.slice(0,index).concat(list.slice(index+1));
     setList(newList);
   }
 
-  function onSubmit(e){
-    e.preventDefault();
-    console.log("task is", task);
-    addToList(task);
+  function bringToTop(index) {
+    const newList = [list[index],...list.slice(0,index).concat(list.slice(index+1))];
+    setList(newList);
   }
 
   return (
@@ -46,8 +51,13 @@ export default function App() {
             key = {item.text}>
               {item.text}
             </li>
-            <i className="fa-solid fa-trash-can"
+            <div>
+              <i className= {index !== 0 ? "fa-solid fa-arrow-up" : ""}
+            onClick={() => bringToTop(index)}></i>
+              <i className="fa-solid fa-trash-can"
             onClick={() => removeItem(index)}></i>
+            </div>
+            
         </div>
         )
         })
